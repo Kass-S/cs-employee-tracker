@@ -126,7 +126,7 @@ const EmployeeModal = ({ type, employee, refreshEmployees }: { type: 'Add' | 'Ed
 
 
     return (
-        <Dialog >
+        <Dialog open={openModal} onOpenChange={setOpenModal}>
             <DialogTrigger asChild>
                 {/* <Button variant="outline">Edit Profile</Button> */}
                 <Button
