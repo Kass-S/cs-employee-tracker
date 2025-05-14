@@ -165,6 +165,7 @@ const EmployeeModal = ({ type, employee, refreshEmployees }: { type: 'Add' | 'Ed
                                 id="jobTitle"
                                 value={employeeToChange.jobTitle}
                                 onChange={handleEmployeeToChange}
+                                disabled={type === 'Edit'? true : false}
                             />
                         </div>
                     </div>
