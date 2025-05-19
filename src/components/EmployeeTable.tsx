@@ -9,9 +9,12 @@ import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import { Button } from './ui/button';
 import { TableHeader, TableRow, TableHead, TableBody, TableCell, Table } from './ui/table';
 import EmployeeModal from './EmployeeModal';
+import { useAppContext } from '@/lib/context/context';
 
 const EmployeeTable = () => {
     const { push } = useRouter();
+
+    const { setEmployeeId } = useAppContext();
 
     // useStates
     const [employees, setEmployees] = useState<Employee[]>([]);
@@ -70,6 +73,12 @@ const EmployeeTable = () => {
         } catch (error) {
             console.log("error", error);
         }
+    };
+
+    const handleViewEmployee = async (id: number) => {
+        await setEmployeeId(id);
+
+        push('/employee-page');
     };
 
     // Getting the user token from storage
@@ -226,6 +235,9 @@ const EmployeeTable = () => {
                                 <TableCell>{employee.jobTitle}</TableCell>
                                 <TableCell>{employee.hireDate}</TableCell>
                                 <TableCell className="flex gap-3 justify-end">
+                                    <Button onClick={() => handleViewEmployee(employee.id)}>
+                                        View
+                                    </Button>
                                     <EmployeeModal type="Edit" employee={employee} refreshEmployees={handleGetEmployees} />
                                     <Button variant="destructive"  className='cursor-pointer' onClick={() => handleDeleteEmployee(employee.id)}>
                                         Delete
