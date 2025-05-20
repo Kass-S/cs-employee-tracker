@@ -12,6 +12,7 @@ import { Calendar } from './ui/calendar';
 import { CalendarIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
 
 
 // Valid values for type: "Add" & "Edit"
@@ -169,8 +170,21 @@ const EmployeeModal = ({ type, employee, refreshEmployees }: { type: 'Add' | 'Ed
                                 id="jobTitle"
                                 value={employeeToChange.jobTitle}
                                 onChange={handleEmployeeToChange}
-                                disabled={type === 'Edit'? true : false}
                             />
+
+                            <DropdownMenu>
+                            {/* make this work */}
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="outline" className="text-sm text-gray-600 cursor-pointer" >
+                                        Job title
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent className='z-1 bg-white'>
+                                    <DropdownMenuItem className='cursor-pointer'  >Customer Support</DropdownMenuItem>
+                                    <DropdownMenuItem className='cursor-pointer' >IT Support Specialist</DropdownMenuItem>
+                                    <DropdownMenuItem className='cursor-pointer'>Software Engineer</DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
                         </div>
                     </div>
                     <div>
@@ -208,7 +222,7 @@ const EmployeeModal = ({ type, employee, refreshEmployees }: { type: 'Add' | 'Ed
                         <Button
                             onClick={handleEmployee}
                             color="success"
-                            disabled={disableBtn}
+                            disabled={!disableBtn}
                         >
                             {type === "Add" ? "Add" : "Update"} Employee
                         </Button>
