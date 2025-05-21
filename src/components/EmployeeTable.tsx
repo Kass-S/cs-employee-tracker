@@ -158,7 +158,7 @@ const EmployeeTable = () => {
                                     {sortBy === "name" ? <FaCaretDown className="ml-2" /> : sortBy === "name-reverse" ? <FaCaretUp className="ml-2" /> : ""}
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent className='z-1 bg-white'>
+                            <DropdownMenuContent className='z-1 bg-white rounded-md p-1 px-2 border-1 border-gray-200'>
                                 <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortBy("name")}>A-Z</DropdownMenuItem>
                                 <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortBy("name-reverse")}>Z-A</DropdownMenuItem>
                             </DropdownMenuContent>
@@ -171,7 +171,7 @@ const EmployeeTable = () => {
                                     {sortBy === "hire-date" ? <FaCaretDown className="ml-2" /> : sortBy === "hire-date-reverse" ? <FaCaretUp className="ml-2" /> : ""}
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent className='z-1 bg-white'>
+                            <DropdownMenuContent className='z-1 bg-white rounded-md p-1 px-2 border-1 border-gray-200'>
                                 <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortBy("hire-date")}>Newest First</DropdownMenuItem>
                                 <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortBy("hire-date-reverse")}>Oldest First</DropdownMenuItem>
                             </DropdownMenuContent>
@@ -185,7 +185,7 @@ const EmployeeTable = () => {
                                     Job title
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent className='z-1 bg-white'>
+                            <DropdownMenuContent className='z-1 bg-white rounded-md p-1 px-2 border-1 border-gray-200'>
                                 <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortByJob}  >Customer Support</DropdownMenuItem>
                                 <DropdownMenuItem className='cursor-pointer' >IT Support Specialist</DropdownMenuItem>
                                 <DropdownMenuItem className='cursor-pointer'>Software Engineer</DropdownMenuItem>

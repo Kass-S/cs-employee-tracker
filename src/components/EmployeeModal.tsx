@@ -19,6 +19,7 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 const EmployeeModal = ({ type, employee, refreshEmployees }: { type: 'Add' | 'Edit', employee: Employee | null, refreshEmployees: () => Promise<void> }) => {
 
     // useStates
+    const [jobTitleState, setJobTitleState] = useState<string>("");
     const [openModal, setOpenModal] = useState(false);
     const [employeeToChange, setEmployeeToChange] = useState<Employee>({
         id: 0,
@@ -40,6 +41,9 @@ const EmployeeModal = ({ type, employee, refreshEmployees }: { type: 'Add' | 'Ed
     const onOpenModal = () => {
         if (type === "Edit") {
             setEmployeeToChange(employee as Employee);
+        }
+        if(type === "Add"){
+            setJobTitleState("");
         }
 
         setOpenModal(true);
@@ -175,14 +179,15 @@ const EmployeeModal = ({ type, employee, refreshEmployees }: { type: 'Add' | 'Ed
                             <DropdownMenu>
                             {/* make this work */}
                                 <DropdownMenuTrigger asChild>
-                                    <Button variant="outline" className="text-sm text-gray-600 cursor-pointer" >
-                                        Job title
+                                    <Button variant="outline" className="text-sm font-normal cursor-pointer w-[14.1rem] text-left" >
+                                       
+                                       {type === "Add" ? jobTitleState : employeeToChange.jobTitle}
                                     </Button>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent className='z-1 bg-white'>
-                                    <DropdownMenuItem className='cursor-pointer'  >Customer Support</DropdownMenuItem>
-                                    <DropdownMenuItem className='cursor-pointer' >IT Support Specialist</DropdownMenuItem>
-                                    <DropdownMenuItem className='cursor-pointer'>Software Engineer</DropdownMenuItem>
+                                <DropdownMenuContent className='z-1 bg-white rounded-md p-1 px-2 border-1 border-gray-200'>
+                                    <DropdownMenuItem className='cursor-pointer' onClick={() => setJobTitleState("Customer Support")} >Customer Support</DropdownMenuItem>
+                                    <DropdownMenuItem className='cursor-pointer' onClick={() => setJobTitleState("IT Support Specialist")} >IT Support Specialist</DropdownMenuItem>
+                                    <DropdownMenuItem className='cursor-pointer' onClick={() => setJobTitleState("Software Engineer")} >Software Engineer</DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         </div>
