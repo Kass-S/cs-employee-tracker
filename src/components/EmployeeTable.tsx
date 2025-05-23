@@ -10,6 +10,14 @@ import { Button } from './ui/button';
 import { TableHeader, TableRow, TableHead, TableBody, TableCell, Table } from './ui/table';
 import EmployeeModal from './EmployeeModal';
 import { useAppContext } from '@/lib/context/context';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+} from "./ui/pagination"
 
 const EmployeeTable = () => {
     const { push } = useRouter();
@@ -24,6 +32,16 @@ const EmployeeTable = () => {
 
     const [sortBy, setSortBy] = useState("");
     const [sortByJob, setSortByJob] = useState("");
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsOnPage = 5;
+
+    const lastItemIndex = currentPage * itemsOnPage;
+    const firstItemIndex = lastItemIndex - itemsOnPage;
+    const currentEmployees = sortedEmployees.slice(firstItemIndex, lastItemIndex);
+
+    const totalPages = Math.ceil(sortedEmployees.length / itemsOnPage);
+
 
     // Function to get employees
     const handleGetEmployees = async () => {
@@ -229,7 +247,7 @@ const EmployeeTable = () => {
                             <TableCell></TableCell>
                         </TableRow>
                     ) : (
-                        sortedEmployees.map((employee, idx) => (
+                        currentEmployees.map((employee, idx) => (
                             <TableRow key={idx}>
                                 <TableCell className="font-medium">{employee.name}</TableCell>
                                 <TableCell>{employee.jobTitle}</TableCell>
@@ -249,6 +267,37 @@ const EmployeeTable = () => {
                 </TableBody>
             </Table>
             {/* Display table - End */}
+
+            {totalPages > 1 && (
+                <div className="mt-6 flex justify-center">
+                    <Pagination>
+                        <PaginationContent>
+                            <PaginationItem>
+                                <PaginationPrevious onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} />
+                            </PaginationItem>
+
+                            {
+                                [...Array(totalPages)].map((_, idx) => {
+                                    const pageNum = idx + 1;
+                                    return (
+                                        <PaginationItem key={pageNum}>
+                                            <PaginationLink
+                                                isActive={pageNum === currentPage}
+                                                onClick={() => setCurrentPage(pageNum)} >
+                                                {pageNum}
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                    );
+                                })
+                            }
+
+                            <PaginationItem>
+                                <PaginationNext onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} />
+                            </PaginationItem>
+                        </PaginationContent>
+                    </Pagination>
+                </div>
+                )}
         </>
     )
 }
