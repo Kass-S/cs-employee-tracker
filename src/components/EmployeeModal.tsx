@@ -170,24 +170,28 @@ const EmployeeModal = ({ type, employee, refreshEmployees }: { type: 'Add' | 'Ed
                             <div className="mb-2 block">
                                 <Label htmlFor="jobTitle">Job title</Label>
                             </div>
-                            <Input
-                                id="jobTitle"
-                                value={employeeToChange.jobTitle}
-                                onChange={handleEmployeeToChange}
-                            />
-
+                            
                             <DropdownMenu>
                             {/* make this work */}
                                 <DropdownMenuTrigger asChild>
-                                    <Button variant="outline" className="text-sm font-normal cursor-pointer w-[14.1rem] text-left" >
+                                    <Button variant="outline" className="text-sm font-normal cursor-pointer w-[14.1rem] flex justify-start" >
                                        
                                        {type === "Add" ? jobTitleState : employeeToChange.jobTitle}
                                     </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent className='z-1 bg-white rounded-md p-1 px-2 border-1 border-gray-200'>
-                                    <DropdownMenuItem className='cursor-pointer' onClick={() => setJobTitleState("Customer Support")} >Customer Support</DropdownMenuItem>
-                                    <DropdownMenuItem className='cursor-pointer' onClick={() => setJobTitleState("IT Support Specialist")} >IT Support Specialist</DropdownMenuItem>
-                                    <DropdownMenuItem className='cursor-pointer' onClick={() => setJobTitleState("Software Engineer")} >Software Engineer</DropdownMenuItem>
+                                    <DropdownMenuItem className='cursor-pointer' onClick={() => {
+                                    setJobTitleState("Customer Support");
+                                    setEmployeeToChange(prev => ({ ...prev, jobTitle: "Customer Support" }));
+                                    }} >Customer Support</DropdownMenuItem>
+                                    <DropdownMenuItem className='cursor-pointer' onClick={() => {
+                                    setJobTitleState("IT Support Specialist");
+                                    setEmployeeToChange(prev => ({ ...prev, jobTitle: "IT Support Specialist" }));
+                                    }} >IT Support Specialist</DropdownMenuItem>
+                                    <DropdownMenuItem className='cursor-pointer'  onClick={() => {
+                                    setJobTitleState("Software Engineer");
+                                    setEmployeeToChange(prev => ({ ...prev, jobTitle: "Software Engineer" }));
+                                    }} >Software Engineer</DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         </div>

@@ -205,8 +205,8 @@ const EmployeeTable = () => {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className='z-1 bg-white rounded-md p-1 px-2 border-1 border-gray-200'>
                                 <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortByJob}  >Customer Support</DropdownMenuItem>
-                                <DropdownMenuItem className='cursor-pointer' >IT Support Specialist</DropdownMenuItem>
-                                <DropdownMenuItem className='cursor-pointer'>Software Engineer</DropdownMenuItem>
+                                <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortByJob} >IT Support Specialist</DropdownMenuItem>
+                                <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortByJob}>Software Engineer</DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
 
