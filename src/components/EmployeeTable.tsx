@@ -10,14 +10,7 @@ import { Button } from './ui/button';
 import { TableHeader, TableRow, TableHead, TableBody, TableCell, Table } from './ui/table';
 import EmployeeModal from './EmployeeModal';
 import { useAppContext } from '@/lib/context/context';
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationPrevious,
-  PaginationNext,
-} from "./ui/pagination"
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, } from "./ui/pagination"
 
 const EmployeeTable = () => {
     const { push } = useRouter();
@@ -74,11 +67,11 @@ const EmployeeTable = () => {
         }
     };
 
-    const changeSortByJob = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const changeSortByJob = (jobTitle: string) => {
         setSortBy("job-title");
         // connected to job title sort
 
-        setSortByJob(e.target.value);
+        setSortByJob(jobTitle);
         console.log(sortByJob);
     };
 
@@ -122,7 +115,7 @@ const EmployeeTable = () => {
 
     // Sorting the employees
     useEffect(() => {
-        const sortingEmployees = employees;
+        let sortingEmployees = employees;
 
         const handleSorting = () => {
             switch (sortBy) {
@@ -143,7 +136,7 @@ const EmployeeTable = () => {
                     );
                     break;
                 case "job-title":
-                    sortingEmployees.filter((employee: Employee) => employee.jobTitle == sortByJob);
+                    sortingEmployees = employees.filter((employee: Employee) => employee.jobTitle == sortByJob);
                     break;
                 default:
                     sortingEmployees.sort((a: Employee, b: Employee) => a.id - b.id);
@@ -197,31 +190,18 @@ const EmployeeTable = () => {
 
 
                         <DropdownMenu>
-                            {/* make this work */}
                             <DropdownMenuTrigger asChild>
                                 <Button variant="outline" className="text-sm text-gray-600 cursor-pointer" >
                                     Job title
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className='z-1 bg-white rounded-md p-1 px-2 border-1 border-gray-200'>
-                                <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortByJob}  >Customer Support</DropdownMenuItem>
-                                <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortByJob} >IT Support Specialist</DropdownMenuItem>
-                                <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortByJob}>Software Engineer</DropdownMenuItem>
+                                <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortByJob("Customer Support")}  >Customer Support</DropdownMenuItem>
+                                <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortByJob("IT Support Specialist")} >IT Support Specialist</DropdownMenuItem>
+                                <DropdownMenuItem className='cursor-pointer' onClick={() => changeSortByJob("Software Engineer")}>Software Engineer</DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
 
-                        {/* <select
-                            className="ml-3 text-sm border rounded p-1 cursor-pointer"
-                            value={sortBy === "job-title" ? sortByJob : ""}
-                            onChange={changeSortByJob}
-                        >
-                            <option value="" disabled>
-                                Job title
-                            </option>
-                            <option value="Customer Support">Customer Support</option>
-                            <option value="IT Support Specialist">IT Support Specialist</option>
-                            <option value="Software Engineer">Software Engineer</option>
-                        </select> */}
                     </div>
                 </div>
             </div>

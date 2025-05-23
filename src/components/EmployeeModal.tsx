@@ -180,15 +180,15 @@ const EmployeeModal = ({ type, employee, refreshEmployees }: { type: 'Add' | 'Ed
                                     </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent className='z-1 bg-white rounded-md p-1 px-2 border-1 border-gray-200'>
-                                    <DropdownMenuItem className='cursor-pointer' onClick={() => {
+                                    <DropdownMenuItem className='cursor-pointer py-1' onClick={() => {
                                     setJobTitleState("Customer Support");
                                     setEmployeeToChange(prev => ({ ...prev, jobTitle: "Customer Support" }));
                                     }} >Customer Support</DropdownMenuItem>
-                                    <DropdownMenuItem className='cursor-pointer' onClick={() => {
+                                    <DropdownMenuItem className='cursor-pointer py-1' onClick={() => {
                                     setJobTitleState("IT Support Specialist");
                                     setEmployeeToChange(prev => ({ ...prev, jobTitle: "IT Support Specialist" }));
                                     }} >IT Support Specialist</DropdownMenuItem>
-                                    <DropdownMenuItem className='cursor-pointer'  onClick={() => {
+                                    <DropdownMenuItem className='cursor-pointer py-1'  onClick={() => {
                                     setJobTitleState("Software Engineer");
                                     setEmployeeToChange(prev => ({ ...prev, jobTitle: "Software Engineer" }));
                                     }} >Software Engineer</DropdownMenuItem>

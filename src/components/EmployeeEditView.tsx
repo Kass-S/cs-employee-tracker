@@ -7,7 +7,8 @@ import { Input } from './ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from './ui/select'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
 import { cn } from '@/lib/utils'
-import { CalendarIcon, Calendar } from 'lucide-react'
+import { CalendarIcon } from 'lucide-react'
+import { Calendar } from "@/components/ui/calendar"
 
 const EmployeeEditView = ({ employee, setEdit }: { employee: Employee, setEdit: (value: boolean) => void }) => {
 
@@ -43,23 +44,23 @@ const EmployeeEditView = ({ employee, setEdit }: { employee: Employee, setEdit: 
             <div>
                 <p className="text-sm font-semibold">Hire Date</p>
                 <Popover>
-                            <PopoverTrigger asChild>
-                                <Button
-                                    variant={"outline"}
-                                    className={cn("w-full justify-start text-left font-normal text-muted-foreground")}
-                                >
-                                    <CalendarIcon />
-                                    <span>Pick a date</span>
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0">
-                                <Calendar
-                                    mode="single"
-                                    selected={new Date()}
-                                    initialFocus
-                                />
-                            </PopoverContent>
-                        </Popover>
+                    <PopoverTrigger asChild>
+                        <Button
+                            variant={"outline"}
+                            className={cn("w-full justify-start text-left font-normal text-muted-foreground")}
+                        >
+                            <CalendarIcon />
+                            <span>Pick a date</span>
+                        </Button>
+                    </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0">
+                            <Calendar
+                                mode="single"
+                                selected={new Date()}
+                                initialFocus
+                             />
+                        </PopoverContent>
+                </Popover>
             </div>
 
 
