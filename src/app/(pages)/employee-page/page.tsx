@@ -8,7 +8,7 @@ import { Employee } from '@/lib/interfaces/interfaces';
 import { getEmployeeById } from '@/lib/services/employee-service';
 import React, { useEffect, useState } from 'react'
 
-const page = () => {
+const Page = () => {
     const { employeeId } = useAppContext();
 
     const [employee, setEmployee] = useState<Employee | null>(null);
@@ -67,4 +67,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
